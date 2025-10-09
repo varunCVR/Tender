@@ -63,6 +63,48 @@ public static class Queries
         });
     }
     
+// ========== TEACHER QUERIES ==========
+
+// Get all teachers
+public static List<Teacher> GetTeachers()
+{
+    return db.Table<Teacher>().OrderBy(t => t.name).ToList();
+}
+
+// Add a new teacher
+public static int AddTeacher(string name, string email, string passwordHash)
+{
+    var teacher = new Teacher
+    {
+        name = name,
+        email = email,
+        password_hash = passwordHash
+    };
+    return db.Insert(teacher);
+}
+
+
+// Update existing teacher
+public static void UpdateTeacher(int teacherId, string name, string email, string passwordHash = null)
+{
+    var teacher = db.Table<Teacher>().FirstOrDefault(t => t.teacher_id == teacherId);
+    if (teacher == null) return;
+
+    teacher.name = name;
+    teacher.email = email;
+    if (!string.IsNullOrEmpty(passwordHash))
+        teacher.password_hash = passwordHash;
+
+    db.Update(teacher);
+}
+
+// Delete teacher
+public static void DeleteTeacher(int teacherId)
+{
+    var teacher = db.Table<Teacher>().FirstOrDefault(t => t.teacher_id == teacherId);
+    if (teacher != null)
+        db.Delete(teacher);
+}
 
     public static List<PracticalLog> GetLogsForStudent(int studentId) =>
         db.Table<PracticalLog>().Where(l => l.student_id == studentId)
