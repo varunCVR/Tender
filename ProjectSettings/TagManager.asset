@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - patti
+  - water
+  - iceall
+  - glow
+  - Player2
+  - N
+  - S
+  - Bowl
+  - RF
+  - FC
+  - Eve_1
+  - Spoon
+  - Salt
+  - Coconut
+  - Water
+  - CopperS
+  - partTwo
+  - partOne
+  - Al
+  - Fe
+  - Cu
+  - Zn
+  - Coil
+  - X
+  - Cylinder
+  - Shaft
+  - K
+  - knife
+  - Mix_2
+  - pani
+  - Buch
+  - Event
+  - SteamObject
+  - Respawn2
+  - Respawn3
+  - water4
+  - Respawn4
+  - water3
+  - water2
+  - CableOne
+  - n1
+  - Cable2
+  - Clicker
+  - milk
+  - glass
+  - B
+  - Player3
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - ABC
+  - Water
+  - UI
+  - Glow
+  - Cu
+  - Fire
+  - WoodBase
+  - Kapur
+  - Salt
+  - Copper
+  - Iron
+  - Zinc
+  - Aluminium
+  - SceneLayerForLight
+  - Lab
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 470726717
+    locked: 0
+  - name: New Layer2
+    uniqueID: 3092017539
+    locked: 0

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4df9f66b663770a42ba3122cb588f307
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Mon_G006
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0138e40a2257e1b41bcadca6e17e1575, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,301 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Menu English.unity
+    guid: b7d70a8e0465c674aa28019b6c43671c
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Menu
+      Guj.unity
+    guid: 47d4809806490f64d90b1f25e5f711d6
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Aapel
+      Mutra na namuna ma sarkra.unity
+    guid: 045442c7181a0b844be2aa671f6b5def
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/English
+      Menu/Eng 3 Acid Bais nu Anumapan.unity
+    guid: 4feb7286dbe744d4e9f716a1275d7c97
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/bhusthir
+      dhruvi upgraho.unity
+    guid: ba1a79b2704e46747922a5232ebce9c0
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Bio.unity
+    guid: ae2909c949027ad48842ef6b9a65f3eb
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/chem1
+      Dal sanchay niyam.unity
+    guid: 764acb181e77a7a4182da3de26f1cb17
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/chem2
+      pani  ma ghanta.unity
+    guid: a4f2ce7ddbddb0a40a6e8ef22da41488
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/chem4
+      zn fe dhatuo ni chakasni.unity
+    guid: 9c0f6c64ac29a264f83504be8a89c967
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/chem5
+      acid bais anumapan.unity
+    guid: eab87b021fa3ae445b3227b3bfcfd5db
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/chem7
+      havama nilambit.unity
+    guid: 9b1261608c2bfe44c8647e41c6fa441a
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Cyclotrone.unity
+    guid: 20a5c73cd34719b4d86516ab57cbdbcf
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Dal
+      sanchay no niyam chakasvo.unity
+    guid: 67ccac5ff2afb3a4b98763e578def3d5
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/dravyo
+      ni sthitisthapak vartnuk.unity
+    guid: ae4ce0a5b9dff2d45b78f1e308990c61
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/GardenOnly
+      1.unity
+    guid: be65546116aae1e40bd5a9daa78526c3
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Gearbox.unity
+    guid: ba25afbe47ce52542bc7edef0bdb722e
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Generator.unity
+    guid: 8bc87dc6eb5db3541b93af8f2a6597eb
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Heart.unity
+    guid: ef1155654b155c744a17ad6ff7003af0
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Heart_Android
+      1.unity
+    guid: 814d8712bd8c417439a586af04833d57
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Leaf
+      Cell ovr.unity
+    guid: 70970ce770bc6c241ad67ff8053c3359
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Mota
+      antaro nu mapan.unity
+    guid: 5750d4d795ec1bd41b50cea8d4fa799d
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Mul
+      ane prakand ni antsvarchna no abhyas.unity
+    guid: f5250cb92a6bc704c9b5f8e16e2c861c
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Pani
+      ma dhundhnapanu chakasvu.unity
+    guid: 16131dc7543922a4099dabb65c973e19
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Pani
+      maghanta.unity
+    guid: bbc5e3f8ce0c91b4d8cc49d69e982267
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/paragaasan
+      par paragraj na ankurn no abhyas.unity
+    guid: eed7171413527e745ac2a25b564f6408
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/paragraj
+      na ankuran ni slide banavi.unity
+    guid: d5eebbe80a2582344ad1c895191f11f8
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Protein
+      ni hajari.unity
+    guid: cac427c1c64e8b146ac7ae5e780fcfab
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/Redox
+      nu anumapan.unity
+    guid: 3b22f3a06faeae3449b9b39caf949157
+  - enabled: 0
+    path: Assets/00/Scene All/Scenes With Meta Building Blocks Meta Avatar Rig/znfecu.unity
+    guid: 6acd8383c0440eb4eaf0f54c1865b204
+  - enabled: 0
+    path: Assets/00/Scene All/Menu Guj.unity
+    guid: 8d2c5452e0d43a741801ed90d787078f
+  - enabled: 0
+    path: Assets/00/Scene All/Bio 1.unity
+    guid: bdc75a1f8ec7bde46993c006a7eb623c
+  - enabled: 0
+    path: Assets/00/Scene All/Bio 2.unity
+    guid: 1ac11f76e1ccf2847bc8a44416aea890
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 1.unity
+    guid: 10536313dfad43446bbd08dd7d68ef07
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 2.unity
+    guid: 9409d68f769b3504ba2d8e124904b096
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 3.unity
+    guid: 8c0f833eabd4cd847a2b17ff642297b0
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 4.unity
+    guid: 0e4525481d4264247a112ee95802b012
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 5.unity
+    guid: 0c13f598610a37a4388743190abce1db
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 6.unity
+    guid: 65e664b19b7a1774e989366d8770cbcb
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 7.unity
+    guid: f70b2e2cf03680746b65c78c81d980ce
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 8.unity
+    guid: 2862aba3d6d316a4bb65c70ba2f4f0a7
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 9.unity
+    guid: c84900ee7699e024dbb5f786e24a6683
+  - enabled: 0
+    path: Assets/00/Scene All/Chem 10.unity
+    guid: 30efa1d7a9481b440b8ec87d96020f39
+  - enabled: 0
+    path: Assets/00/Scene All/demo 1.unity
+    guid: a4188b8b792c6364d9ea48511abbd2c6
+  - enabled: 0
+    path: Assets/00/Scene All/demo 2.unity
+    guid: 0e42d01e11502214ab7acf2070c54501
+  - enabled: 0
+    path: Assets/00/Scene All/demo 3.unity
+    guid: da5c6527e79d5f34ba0e45b39e48d98b
+  - enabled: 0
+    path: Assets/00/Scene All/demo 5.unity
+    guid: 6a430cdbac8f28e48bc9935e3d281216
+  - enabled: 0
+    path: Assets/00/Scene All/demo 7.unity
+    guid: 9ece0f4ab760af74ea1ca4e3d41200a9
+  - enabled: 0
+    path: Assets/00/Scene All/demo 8.unity
+    guid: 6f1e9baf919b2d44da32a036816038b6
+  - enabled: 0
+    path: Assets/00/Scene All/demo 9.unity
+    guid: 3c3ab41f0643b7642ab8b417ee6b9a9b
+  - enabled: 0
+    path: Assets/00/Scene All/demo 11.unity
+    guid: 236767a41337ad949ad9f93665a321b5
+  - enabled: 0
+    path: Assets/00/Scene All/demo 12.unity
+    guid: 62d8663ae53c24348b5afdd0e6a4d100
+  - enabled: 0
+    path: Assets/00/Scene All/demo 13.unity
+    guid: ed21b088eaa39cf43851c052d8954d84
+  - enabled: 0
+    path: Assets/00/Scene All/demo 14.unity
+    guid: e744025fd7b6992459876c23466994ba
+  - enabled: 0
+    path: Assets/00/Scene All/demo 14New.unity
+    guid: d2156c068c10f3c4b842b196cef9fe91
+  - enabled: 0
+    path: Assets/00/Scene All/demo 15.unity
+    guid: 6f7691388745f884e9d1d2c5ce5461d0
+  - enabled: 0
+    path: Assets/00/Scene All/demo 16.unity
+    guid: 91e0dc80f16d5b549913c4264d3903fb
+  - enabled: 0
+    path: Assets/00/Scene All/demo 17.unity
+    guid: 2bbd1bf809797a443ac28c730f26437f
+  - enabled: 0
+    path: Assets/00/Scene All/demo 18.unity
+    guid: 15da6575e5f38e142912a4d45b589aa6
+  - enabled: 0
+    path: Assets/00/Scene All/demo 19.unity
+    guid: 9a69d0aeac9011f48acd95d6d6dc2f72
+  - enabled: 0
+    path: Assets/00/Scene All/demo 20.unity
+    guid: c197e0bb6e4123741ae42c8a510cb579
+  - enabled: 0
+    path: Assets/00/Scene All/demo 21.unity
+    guid: c0f9b1e2b684e2a40a1ed92024d7dc3f
+  - enabled: 0
+    path: Assets/00/Scene All/demo 22.unity
+    guid: c653e9cf1fb82464eb7727b696669b29
+  - enabled: 0
+    path: Assets/00/Scene All/demo 23.unity
+    guid: f7a6d95c825f683448aefd54725a32c5
+  - enabled: 0
+    path: Assets/00/Scene All/demo 24.unity
+    guid: 10614c1dd45ddca4a9ee9bdf99abc791
+  - enabled: 0
+    path: Assets/00/Scene All/demo 25.unity
+    guid: cb43eccec3cfb4240ae3578404ff24fa
+  - enabled: 0
+    path: Assets/00/Scene All/GardenOnly.unity
+    guid: 70be62755a5b72647ae19761d21bce2d
+  - enabled: 0
+    path: Assets/00/Scene All/Heart_Android.unity
+    guid: 23380c47dd9de0441aadcfd608eb6dff
+  - enabled: 0
+    path: Assets/00/Scene All/Menu.unity
+    guid: 616e25e44d664754f850a809d37cce17
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 1.unity
+    guid: bfcf8f92ebf0b0442a167aeb04ab4ed8
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 2.unity
+    guid: 1dab121734f93884e91fd729762cebe7
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 3.unity
+    guid: 9210184bde1fc7c4aa71f28a483fcfd1
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 4.unity
+    guid: 71de2e58d96105040b0f9da106f148d5
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 5.unity
+    guid: b9126b51332cdbb48aae2c96db730474
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 6.unity
+    guid: 876055b3286972140a4f378170057b9d
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 7.unity
+    guid: fa626ec163cf91f48819f57171f72cef
+  - enabled: 0
+    path: Assets/00/Scene All/Phy 8.unity
+    guid: bb13bb6184c2b4443ac3e20db2f8f7cf
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 1 Verify the Law of Equivalent Proportions.unity
+    guid: ac71fbc5b3b90914a89b620ef6d01258
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 2 Study of Frictional Force of a Pulley.unity
+    guid: 77616676b6352c8419295adb23833e7b
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 3 Identification of Acid and Base.unity
+    guid: 433f495c3a6c8d344a5d12d3ca5ba161
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 4 Heart.unity
+    guid: 93031f7b29a640c468f49f44587fa671
+  - enabled: 0
+    path: "Assets/00/Scene All/English Menu/Eng 5 Light \u2013 Reflection and Refraction.unity"
+    guid: b7505e7454d4a684897956055609b72c
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 6 Eye Defects and Their Correction.unity
+    guid: 2356dd4529d0cf6469fe2fdbaf777d8b
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 7 Cuso4 na dravan ma nh2oh.unity
+    guid: c3ab7faa27ff88d4a9aac885a947640f
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/Eng 8 Cyclotron.unity
+    guid: a923f734d6a38424aa13787ca2e536c0
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/VROne/Eng 3 Identification of Acid and
+      Base QWR.unity
+    guid: 86b94a13e5194e4478d29f443b8ba03f
+  - enabled: 0
+    path: Assets/00/Scene All/English Menu/VROne/test scene qwr.unity
+    guid: 5b8385c47cf3abc4391c675e48b7ad02
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/72.0.0/Example Scenes/HandGrabExamples.unity"
+    guid: 39ae0e546b9edc0408d3b11c6a7c2814
+  - enabled: 1
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/72.0.0/Example Scenes/DistanceGrabExamples.unity"
+    guid: e1c1f1d4144ac8849ac1833b99bdfd23
+  m_configObjects:
+    QWR.Core.XR.QWRXRSettings: {fileID: 11400000, guid: 2dae9ea2353f22441abe2d99187ac7b8, type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 37b86942676b2fd4db32811c53af04c7, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: ac3d5f8e851578b48a453bdadec0ea4b, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d050ed172c05b6e46b99a8d174d14b01, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 449cb750d8ffa81459f49d2cfd3ac223, type: 2}
+  m_UseUCBPForAssetBundles: 0

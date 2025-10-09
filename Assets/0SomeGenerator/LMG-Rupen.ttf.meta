@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 66b44d4efd7ed914fb0d988cca01a458
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - LMG-Rupen
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e1fa175778bac464cb167f785eb5fd1a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
