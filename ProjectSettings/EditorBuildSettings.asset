@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/00/Scene All/English Menu/Menu English.unity
     guid: b7d70a8e0465c674aa28019b6c43671c
   - enabled: 0
@@ -289,7 +289,7 @@ EditorBuildSettings:
   - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/72.0.0/Example Scenes/HandGrabExamples.unity"
     guid: 39ae0e546b9edc0408d3b11c6a7c2814
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Samples/Meta XR Interaction \u200BSDK/72.0.0/Example Scenes/DistanceGrabExamples.unity"
     guid: e1c1f1d4144ac8849ac1833b99bdfd23
   m_configObjects:
