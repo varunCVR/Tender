@@ -21,6 +21,7 @@ public static class Database
 
             // Create tables
             _conn.CreateTable<Admin>();
+            
             _conn.CreateTable<Teacher>();
             _conn.CreateTable<Student>();
             _conn.CreateTable<Standard>();
@@ -77,8 +78,43 @@ public static class Database
             });
 
             // Minimal users for quick testing
-            _conn.Insert(new Teacher{ name="Dr. Smith", email="smith@school.edu", password_hash="hash" });
+            _conn.Insert(new Admin{ username="v", email="v@v.com", password_hash="hash"});
+            _conn.Insert(new Teacher{ name="SmithMehta", email="smith@school.edu", password_hash="hash" });
             _conn.Insert(new Student{ name="Alice", email="alice@school.edu", password_hash="hash", roll_number="R001", std_id=s11 });
+            Debug.Log("[DB] Path: " + DbPath);
+            EnsureAdmin("v", "v@v.com", "hash");   // <— your test admin
+            Debug.Log("[DB] Admin count: " + _conn.Table<Admin>().Count());
+            foreach (var a in _conn.Table<Admin>()) Debug.Log("[DB] Admin row: " + a.username);
+        }
+        
+    }
+    // Add inside Database class
+    static void EnsureAdmin(string username, string email, string rawPassword)
+    {
+        try
+        {
+            var existing = _conn.Table<Admin>().FirstOrDefault(a => a.username == username);
+            var pwd = rawPassword; // plain text OK (LoginController.Verify allows plain OR SHA256)
+
+            if (existing == null)
+            {
+                _conn.Insert(new Admin { username = username, email = email, password_hash = pwd });
+                Debug.Log("[DB] Admin created: " + username);
+            }
+            else
+            {
+                // keep password synced during dev
+                existing.password_hash = pwd;
+                _conn.Update(existing);
+                Debug.Log("[DB] Admin ensured (updated pwd): " + username);
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("[DB] EnsureAdmin error: " + ex);
         }
     }
+    
+
+
 }
