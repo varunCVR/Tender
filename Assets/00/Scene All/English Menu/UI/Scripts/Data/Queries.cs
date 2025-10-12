@@ -67,7 +67,7 @@ public static class Queries
     // ========== TEACHER QUERIES ==========
 
     // Get all teachers
-    
+
 
     // Add a new teacher
     public static int AddTeacher(string name, string email, string passwordHash)
@@ -169,11 +169,16 @@ public static class Queries
     public static int AddSubject(string name)
         => db.Insert(new Subject { subject_name = name.Trim() });
 
+
+
+
     public static bool SubjectNameExists(string name)
-        => db.Table<Subject>().Any(s => s.subject_name == name.Trim());
+        => db.Table<Subject>().Any(s => s.subject_name.ToLower() == name.Trim().ToLower());
 
     public static bool SubjectNameExistsForAnother(int subjectId, string name)
-        => db.Table<Subject>().Any(s => s.subject_name == name.Trim() && s.subject_id != subjectId);
+        => db.Table<Subject>().Any(s => s.subject_name.ToLower() == name.Trim().ToLower()
+                                        && s.subject_id != subjectId);
+
     public static void UpdateSubject(int id, string name)
     {
         var s = db.Table<Subject>().FirstOrDefault(x => x.subject_id == id);
@@ -182,14 +187,14 @@ public static class Queries
         db.Update(s);
     }
 
-    public static void DeleteSubjectCascade(int id) // remove bridges + practicals
-    {
-        foreach (var ts in db.Table<TeacherSubject>().Where(x => x.subject_id == id).ToList()) db.Delete(ts);
-        foreach (var ss in db.Table<SubjectStandard>().Where(x => x.subject_id == id).ToList()) db.Delete(ss);
-        foreach (var p in db.Table<Practical>().Where(x => x.subject_id == id).ToList()) db.Delete(p);
-        var s = db.Table<Subject>().FirstOrDefault(x => x.subject_id == id);
-        if (s != null) db.Delete(s);
-    }
+    // public static void DeleteSubjectCascade(int id) // remove bridges + practicals
+    // {
+    //     foreach (var ts in db.Table<TeacherSubject>().Where(x => x.subject_id == id).ToList()) db.Delete(ts);
+    //     foreach (var ss in db.Table<SubjectStandard>().Where(x => x.subject_id == id).ToList()) db.Delete(ss);
+    //     foreach (var p in db.Table<Practical>().Where(x => x.subject_id == id).ToList()) db.Delete(p);
+    //     var s = db.Table<Subject>().FirstOrDefault(x => x.subject_id == id);
+    //     if (s != null) db.Delete(s);
+    // }
 
     // -------- Standards --------
     public static List<Standard> GetStandards() =>
@@ -229,11 +234,26 @@ public static class Queries
         foreach (var r in db.Table<TeacherSubject>().Where(x => x.subject_id == subjectId).ToList())
             db.Delete(r);
     }
+    public static void UnlinkAllStandardsFromSubject(int subjectId)
+    {
+        foreach (var r in db.Table<SubjectStandard>().Where(x => x.subject_id == subjectId).ToList())
+            db.Delete(r);
+    }
 
     public static int? GetFirstTeacherIdForSubject(int subjectId)
     {
         var link = db.Table<TeacherSubject>().FirstOrDefault(x => x.subject_id == subjectId);
         return link?.teacher_id;
+    }
+    public static int? GetFirstStdIdForSubject(int subjectId)
+    {
+        var link = db.Table<SubjectStandard>().FirstOrDefault(x => x.subject_id == subjectId);
+        return link?.std_id;
+    }
+    public static void LinkSubjectStandard(int subjectId, int stdId)
+    {
+        bool exists = db.Table<SubjectStandard>().Any(x => x.subject_id == subjectId && x.std_id == stdId);
+        if (!exists) db.Insert(new SubjectStandard { subject_id = subjectId, std_id = stdId });
     }
     // -------- Subject–Standard bridge --------
     public static void AddSubjectStandard(int subjectId, int stdId)
@@ -241,10 +261,19 @@ public static class Queries
         var exists = db.Table<SubjectStandard>().Any(x => x.subject_id == subjectId && x.std_id == stdId);
         if (!exists) db.Insert(new SubjectStandard { subject_id = subjectId, std_id = stdId });
     }
+
     public static void DeleteSubjectStandard(int subjectId, int stdId)
     {
         var row = db.Table<SubjectStandard>().FirstOrDefault(x => x.subject_id == subjectId && x.std_id == stdId);
         if (row != null) db.Delete(row);
+    }
+    public static void DeleteSubjectCascade(int id)
+    {
+        // Raw deletes avoid needing PKs on bridge tables
+        db.Execute("DELETE FROM TeacherSubject WHERE subject_id = ?", id);
+        db.Execute("DELETE FROM SubjectStandard WHERE subject_id = ?", id);
+        db.Execute("DELETE FROM Practical WHERE subject_id = ?", id);
+        db.Execute("DELETE FROM Subject WHERE subject_id = ?", id);
     }
 
 }

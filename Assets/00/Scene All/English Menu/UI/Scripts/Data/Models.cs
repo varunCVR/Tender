@@ -37,18 +37,20 @@ public class Subject {
 }
 
 // Bridge between Subject and Standard (many-to-many)
-public class SubjectStandard
-{
+[Table("TeacherSubject")]
+public class TeacherSubject {
+    [PrimaryKey, AutoIncrement] public int id { get; set; }
+    [Indexed] public int teacher_id { get; set; }
+    [Indexed] public int subject_id { get; set; }
+}
+
+[Table("SubjectStandard")]
+public class SubjectStandard {
+    [PrimaryKey, AutoIncrement] public int id { get; set; }
     [Indexed] public int subject_id { get; set; }
     [Indexed] public int std_id { get; set; }
 }
 
-// Bridge between Teacher and Subject
-public class TeacherSubject
-{
-    [Indexed] public int teacher_id { get; set; }
-    [Indexed] public int subject_id { get; set; }
-}
 #endregion
 
 #region Practicals & Logs

@@ -6,14 +6,14 @@ using System.Collections.Generic;
 public class SubjectsAdminUI : MonoBehaviour
 {
     [Header("List")]
-    public Transform listParent;          // ScrollView/Viewport/Content
-    public GameObject rowPrefab;          // SubjectRowUI
+    public Transform listParent;      // ScrollView/Viewport/Content
+    public GameObject rowPrefab;      // SubjectRowUI
     public ScrollRect scrollRect;
 
     [Header("Panels")]
-    public GameObject managePanel;        // this panel
-    public GameObject addEditPanel;       // Add/Edit panel with SubjectFormUI
-    public Button addButton;              // "Add" button
+    public GameObject managePanel;    // this panel
+    public GameObject addEditPanel;   // panel with SubjectFormUI
+    public Button addButton;
 
     List<Subject> _cache = new List<Subject>();
 
@@ -28,24 +28,36 @@ public class SubjectsAdminUI : MonoBehaviour
     {
         foreach (Transform c in listParent) Destroy(c.gameObject);
 
+        var teachers = Queries.GetTeachers();
+        var standards = Queries.GetStandards();
         _cache = Queries.GetSubjects();
+
         int i = 1;
         foreach (var s in _cache)
         {
-            // label includes first teacher if any
-            string label = s.subject_name;
+            // resolve teacher & standard names (first link if multiple not supported)
+            string teacherName = "-";
+            string stdLabel = "-";
+
             var tid = Queries.GetFirstTeacherIdForSubject(s.subject_id);
             if (tid.HasValue)
             {
-                var t = Queries.GetTeachers().FirstOrDefault(x => x.teacher_id == tid.Value);
-                if (t != null) label = $"{s.subject_name} ({t.name})";
+                var t = teachers.FirstOrDefault(x => x.teacher_id == tid.Value);
+                if (t != null) teacherName = t.name;
             }
 
-            var go  = Instantiate(rowPrefab, listParent);
+            var sid = Queries.GetFirstStdIdForSubject(s.subject_id);
+            if (sid.HasValue)
+            {
+                var st = standards.FirstOrDefault(x => x.std_id == sid.Value);
+                if (st != null) stdLabel = st.std_num;
+            }
+
+            var go = Instantiate(rowPrefab, listParent);
             var row = go.GetComponent<SubjectRowUI>();
             var localS = s;
-            row.Bind(i++, label,
-                onEdit:   () => OpenEdit(localS),
+            row.Bind(i++, s.subject_name, teacherName, stdLabel,
+                onEdit: () => OpenEdit(localS),
                 onDelete: () => UIMessageManager.Instance.ShowConfirm(
                     $"Delete '{localS.subject_name}'?\n(Links & practicals will be removed)",
                     onYes: () => { Queries.DeleteSubjectCascade(localS.subject_id); Refresh(); }

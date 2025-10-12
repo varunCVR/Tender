@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 4995317314732606045}
   - component: {fileID: 6199546849923307515}
   - component: {fileID: 7556728453437729743}
-  - component: {fileID: 2357887664515547387}
+  - component: {fileID: 1212437565945094092}
   m_Layer: 5
   m_Name: Row 1
   m_TagString: Untagged
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &2357887664515547387
+--- !u!114 &1212437565945094092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1113,10 +1113,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8865972929410928959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a04b19b1c576bf4cba11534028acd0a, type: 3}
+  m_Script: {fileID: 11500000, guid: ee9b9b0e17f409a409e86ab80b339686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   indexText: {fileID: 7404178650002082773}
   nameText: {fileID: 4914633018093383840}
+  teacherText: {fileID: 8011171924273977349}
+  stdText: {fileID: 606147644567160349}
   editButton: {fileID: 6515350154503057307}
   deleteButton: {fileID: 7720015818125645900}
