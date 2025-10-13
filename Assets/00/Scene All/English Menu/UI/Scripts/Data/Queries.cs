@@ -12,7 +12,6 @@ public static class Queries
 
     public static Teacher FindTeacher(string email) =>
         db.Table<Teacher>().FirstOrDefault(t => t.email == email);
-
     public static Admin FindAdmin(string username) =>
         db.Table<Admin>().FirstOrDefault(a => a.username == username);
 
