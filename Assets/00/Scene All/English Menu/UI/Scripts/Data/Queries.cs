@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 public static class Queries
 {
@@ -273,6 +275,103 @@ public static class Queries
         db.Execute("DELETE FROM SubjectStandard WHERE subject_id = ?", id);
         db.Execute("DELETE FROM Practical WHERE subject_id = ?", id);
         db.Execute("DELETE FROM Subject WHERE subject_id = ?", id);
+    }
+    // ---------- STUDENT QUERIES ----------
+    public static Student GetStudentById(int studentId) =>
+        db.Table<Student>().FirstOrDefault(s => s.student_id == studentId);
+
+    public static List<Student> GetStudents() =>
+        db.Table<Student>().OrderBy(s => s.name).ToList();
+
+    public static List<Student> GetStudentsForStandard(int stdId) =>
+        db.Table<Student>().Where(s => s.std_id == stdId).OrderBy(s => s.name).ToList();
+
+    public static int AddStudent(string name, string email, string rollNumber, int stdId = 0, string passwordHash = "")
+    {
+        var student = new Student
+        {
+            name = name?.Trim(),
+            email = email?.Trim(),
+            roll_number = rollNumber?.Trim(),
+            std_id = stdId,
+            // ensure NOT NULL column always has a value
+            password_hash = passwordHash ?? ""
+        };
+        return db.Insert(student);
+    }
+
+    public static void UpdateStudent(int studentId, string name, string email, string rollNumber, int stdId = 0, string passwordHash = null)
+    {
+        var student = db.Table<Student>().FirstOrDefault(s => s.student_id == studentId);
+        if (student == null) return;
+
+        student.name = name?.Trim();
+        student.email = email?.Trim();
+        student.roll_number = rollNumber?.Trim();
+        student.std_id = stdId;
+
+        // only update password_hash when caller explicitly provides a non-null value
+        if (passwordHash != null)
+        {
+            student.password_hash = passwordHash;
+        }
+
+        db.Update(student);
+    }
+
+    public static void DeleteStudent(int studentId)
+    {
+        var student = db.Table<Student>().FirstOrDefault(s => s.student_id == studentId);
+        if (student != null) db.Delete(student);
+    }
+
+    // ---- Student existence checks ----
+    public static bool StudentEmailExists(string email)
+    {
+        if (string.IsNullOrEmpty(email)) return false;
+        email = email.Trim();
+        return db.Table<Student>().Any(s => s.email == email);
+    }
+
+    public static bool StudentEmailExistsForAnother(int studentId, string email)
+    {
+        if (string.IsNullOrEmpty(email)) return false;
+        email = email.Trim();
+        return db.Table<Student>().Any(s => s.email == email && s.student_id != studentId);
+    }
+
+    public static bool StudentRollExists(string rollNumber)
+    {
+        if (string.IsNullOrEmpty(rollNumber)) return false;
+        rollNumber = rollNumber.Trim();
+        return db.Table<Student>().Any(s => s.roll_number == rollNumber);
+    }
+
+    public static bool StudentRollExistsForAnother(int studentId, string rollNumber)
+    {
+        if (string.IsNullOrEmpty(rollNumber)) return false;
+        rollNumber = rollNumber.Trim();
+        return db.Table<Student>().Any(s => s.roll_number == rollNumber && s.student_id != studentId);
+    }
+
+    // Convenience: use standards as "classes" for UI dropdowns
+    public static List<Standard> GetClasses() => GetStandards();
+
+    public static Standard GetStandardById(int stdId) =>
+        db.Table<Standard>().FirstOrDefault(s => s.std_id == stdId);
+
+
+    public static string HashPassword(string plain)
+    {
+        if (string.IsNullOrEmpty(plain)) return "";
+        using (var sha = SHA256.Create())
+        {
+            var bytes = Encoding.UTF8.GetBytes(plain);
+            var hash = sha.ComputeHash(bytes);
+            var sb = new StringBuilder();
+            foreach (var b in hash) sb.Append(b.ToString("x2"));
+            return sb.ToString();
+        }
     }
 
 }
