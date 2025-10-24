@@ -1,6 +1,7 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class LoginController : MonoBehaviour
 {
@@ -111,11 +112,34 @@ public class LoginController : MonoBehaviour
         teacherPanel.SetActive(role == Role.Teacher);
         studentPanel.SetActive(role == Role.Student);
 
+        // Set AppSession based on role
+        switch (role)
+        {
+            case Role.Admin:
+                var admin = Queries.FindAdminById(userId);
+                if (admin != null)
+                    AppSession.I.LoginAsAdmin(admin.admin_id, admin.username);
+                break;
+
+            case Role.Teacher:
+                var teacher = Queries.GetTeacherById(userId);
+                if (teacher != null)
+                    AppSession.I.LoginAsTeacher(teacher.teacher_id, teacher.name);
+                break;
+
+            case Role.Student:
+                var student = Queries.GetStudentById(userId);
+                if (student != null)
+                    AppSession.I.LoginAsStudent(student.student_id, student.name, student.std_id);
+                break;
+        }
+
         if (successMessage) successMessage.SetActive(true);
         if (errorMessage) errorMessage.SetActive(false);
 
-        Debug.Log($"✅ Login Successful → {role} (ID: {userId})");
+        Debug.Log($" Login Successful → {role} (ID: {userId})");
     }
+
 
     void ShowError(string msg)
     {

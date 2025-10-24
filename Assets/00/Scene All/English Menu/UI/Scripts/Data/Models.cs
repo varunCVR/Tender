@@ -60,7 +60,9 @@ public class Practical {
     [Indexed] public int std_id { get; set; }
     [NotNull] public string title { get; set; }
     // use 0/1 so it's SQLite-friendly
-    [NotNull] public int is_allowed { get; set; } = 1; 
+    [NotNull] public int is_allowed { get; set; } = 1;
+    public string scene_key { get; set; }   // nullable; filled by migration/seed
+
 }
 
 public class PracticalLog {

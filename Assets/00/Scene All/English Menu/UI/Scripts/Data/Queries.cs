@@ -134,35 +134,35 @@ public static class Queries
           .OrderByDescending(l => l.log_id).ToList();
 
     // Useful: get joined info for teacher reports
-    public struct LogView
-    {
-        public int log_id;
-        public string student_name;
-        public string practical_title;
-        public string date_time;
-        public string completion_status;
-    }
+    //public struct LogView
+    //{
+    //    public int log_id;
+    //    public string student_name;
+    //    public string practical_title;
+    //    public string date_time;
+    //    public string completion_status;
+    //}
 
-    public static List<LogView> GetLogsJoined()
-    {
-        var logs = db.Table<PracticalLog>().ToList();
-        var students = db.Table<Student>().ToDictionary(s => s.student_id, s => s.name);
-        var practicals = db.Table<Practical>().ToDictionary(p => p.practical_id, p => p.title);
+    //public static List<LogView> GetLogsJoined()
+    //{
+    //    var logs = db.Table<PracticalLog>().ToList();
+    //    var students = db.Table<Student>().ToDictionary(s => s.student_id, s => s.name);
+    //    var practicals = db.Table<Practical>().ToDictionary(p => p.practical_id, p => p.title);
 
-        var joined = new List<LogView>(logs.Count);
-        foreach (var l in logs)
-        {
-            joined.Add(new LogView
-            {
-                log_id = l.log_id,
-                student_name = students.TryGetValue(l.student_id, out var sn) ? sn : "?",
-                practical_title = practicals.TryGetValue(l.practical_id, out var pt) ? pt : "?",
-                date_time = l.date_time,
-                completion_status = l.completion_status
-            });
-        }
-        return joined;
-    }
+    //    var joined = new List<LogView>(logs.Count);
+    //    foreach (var l in logs)
+    //    {
+    //        joined.Add(new LogView
+    //        {
+    //            log_id = l.log_id,
+    //            student_name = students.TryGetValue(l.student_id, out var sn) ? sn : "?",
+    //            practical_title = practicals.TryGetValue(l.practical_id, out var pt) ? pt : "?",
+    //            date_time = l.date_time,
+    //            completion_status = l.completion_status
+    //        });
+    //    }
+    //    return joined;
+    //}
     // -------- Subjects --------
     public static List<Subject> GetSubjects() =>
         db.Table<Subject>().OrderBy(s => s.subject_name).ToList();
@@ -170,7 +170,37 @@ public static class Queries
     public static int AddSubject(string name)
         => db.Insert(new Subject { subject_name = name.Trim() });
 
+    // Get Admin by id
+    public static Admin FindAdminById(int adminId)
+    {
+        return db.Table<Admin>().FirstOrDefault(a => a.admin_id == adminId);
+    }
 
+    // Get Teacher by id
+    public static Teacher GetTeacherById(int teacherId)
+    {
+        return db.Table<Teacher>().FirstOrDefault(t => t.teacher_id == teacherId);
+    }
+
+    // Return all practicals sorted by standard → subject → title
+    public static List<Practical> GetAllPracticalsOrdered()
+    {
+        return db.Table<Practical>()
+            .OrderBy(p => p.std_id)
+            .ThenBy(p => p.subject_id)
+            .ThenBy(p => p.title)
+            .ToList();
+    }
+
+    // Return practicals only for a given standard, sorted by subject → title
+    public static List<Practical> GetPracticalsForStandard(int stdId)
+    {
+        return db.Table<Practical>()
+            .Where(p => p.std_id == stdId)
+            .OrderBy(p => p.subject_id)
+            .ThenBy(p => p.title)
+            .ToList();
+    }
 
 
     public static bool SubjectNameExists(string name)
@@ -360,6 +390,127 @@ public static class Queries
     public static Standard GetStandardById(int stdId) =>
         db.Table<Standard>().FirstOrDefault(s => s.std_id == stdId);
 
+    // Return the subjects a teacher is assigned to (via TeacherSubject)
+    public static List<Subject> GetSubjectsForTeacher(int teacherId)
+    {
+        var links = db.Table<TeacherSubject>().Where(ts => ts.teacher_id == teacherId).ToList();
+        var subjectIds = links.Select(x => x.subject_id).ToArray();
+        return db.Table<Subject>().Where(s => subjectIds.Contains(s.subject_id))
+                 .OrderBy(s => s.subject_name).ToList();
+    }
+
+    // Get ALL practicals for a standard+subject (regardless of is_allowed)
+    public static List<Practical> GetPracticalsFor(int stdId, int subjectId)
+    {
+        return db.Table<Practical>()
+                 .Where(p => p.std_id == stdId && p.subject_id == subjectId)
+                 .OrderBy(p => p.title)
+                 .ToList();
+    }
+    public static Practical GetPracticalById(int id) =>
+    db.Table<Practical>().FirstOrDefault(p => p.practical_id == id);
+   
+
+    // All standards that intersect with that teacher's subjects
+    public static List<Standard> GetStandardsForTeacher(int teacherId)
+    {
+        var links = db.Table<TeacherSubject>().Where(ts => ts.teacher_id == teacherId).ToList();
+        var sids = links.Select(l => l.subject_id).Distinct().ToArray();
+        var stdIds = db.Table<SubjectStandard>().Where(ss => sids.Contains(ss.subject_id))
+                       .Select(ss => ss.std_id).Distinct().ToArray();
+        return db.Table<Standard>().Where(st => stdIds.Contains(st.std_id))
+                 .OrderBy(st => st.std_num).ToList();
+    }
+
+    // Practical logs joined + filtered
+    // ---- Logs View (unified type used everywhere) ----
+    public struct LogView
+    {
+        public int log_id;
+        public string student_name;
+        public string std_label;        // e.g., "9"
+        public string roll_no;
+        public string practical_title;
+        public string date_time;        // "yyyy-MM-dd HH:mm:ss"
+        public string completion_status;
+    }
+
+    // Unfiltered joined view (new version using the unified LogView)
+    public static List<LogView> GetLogsJoined()
+    {
+        var logs = db.Table<PracticalLog>().ToList();
+        var students = db.Table<Student>().ToList();
+        var practicals = db.Table<Practical>().ToList();
+        var standards = db.Table<Standard>().ToList();
+
+        var studById = students.ToDictionary(s => s.student_id);
+        var pracById = practicals.ToDictionary(p => p.practical_id);
+        var stdById = standards.ToDictionary(s => s.std_id);
+
+        var joined = new List<LogView>(logs.Count);
+        foreach (var l in logs)
+        {
+            if (!studById.TryGetValue(l.student_id, out var s)) continue;
+            if (!pracById.TryGetValue(l.practical_id, out var p)) continue;
+
+            joined.Add(new LogView
+            {
+                log_id = l.log_id,
+                student_name = s.name,
+                std_label = stdById.TryGetValue(s.std_id, out var st) ? st.std_num : "?",
+                roll_no = s.roll_number,
+                practical_title = p.title,
+                date_time = l.date_time,
+                completion_status = l.completion_status
+            });
+        }
+
+        // newest first
+        joined.Sort((a, b) => string.Compare(b.date_time, a.date_time, StringComparison.Ordinal));
+        return joined;
+    }
+
+    // Filter by (stdId, subjectId). Pass 0 to ignore a filter.
+    public static List<LogView> GetLogsJoinedFiltered(int stdId, int subjectId)
+    {
+        // pull tables once
+        var logs = db.Table<PracticalLog>().ToList();
+        var students = db.Table<Student>().ToList();
+        var practicals = db.Table<Practical>().ToList();
+        var standards = db.Table<Standard>().ToList();
+
+        // index for fast lookup
+        var studById = students.ToDictionary(s => s.student_id);
+        var pracById = practicals.ToDictionary(p => p.practical_id);
+        var stdById = standards.ToDictionary(s => s.std_id);
+
+        var result = new List<LogView>(logs.Count);
+
+        foreach (var l in logs)
+        {
+            if (!studById.TryGetValue(l.student_id, out var s)) continue;
+            if (!pracById.TryGetValue(l.practical_id, out var p)) continue;
+
+            // apply optional filters
+            if (stdId != 0 && s.std_id != stdId) continue;
+            if (subjectId != 0 && p.subject_id != subjectId) continue;
+
+            result.Add(new LogView
+            {
+                log_id = l.log_id,
+                student_name = s.name,
+                std_label = stdById.TryGetValue(s.std_id, out var st) ? st.std_num : "?",
+                roll_no = s.roll_number,
+                practical_title = p.title,
+                date_time = l.date_time,
+                completion_status = l.completion_status
+            });
+        }
+
+        // newest first
+        result.Sort((a, b) => string.Compare(b.date_time, a.date_time, StringComparison.Ordinal));
+        return result;
+    }
 
     public static string HashPassword(string plain)
     {

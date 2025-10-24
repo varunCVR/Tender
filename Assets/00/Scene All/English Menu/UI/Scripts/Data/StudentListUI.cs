@@ -44,6 +44,7 @@ public class StudentListUI : MonoBehaviour
         _currentStdId = 0;
         Refresh();
     }
+    public void RefreshCurrent() => Refresh();
 
     public void Refresh()
     {
